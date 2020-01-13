@@ -8,6 +8,10 @@
         const weather = await fetch(path);
         const data = await weather.json();
         console.log(data);
+
+        document.getElementById("location-timezone").innerHTML= data.city.name;
+        document.getElementById("degree1").innerHTML= ;
+
     }
 
     document.getElementById("run").onclick = function() {getWeather()};
