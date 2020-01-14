@@ -1,18 +1,23 @@
 (() => {
 
-    let descDayHTML1 = document.getElementById("descDayOne");
-    let descDayHTML2 = document.getElementById("descDayTwo");
-    let descDayHTML3 = document.getElementById("descDayThree");
-    let descDayHTML4 = document.getElementById("descDayFour");
-    let descDayHTML5 = document.getElementById("descDayFive");
+    document.getElementById("run").onclick = function() {getWeather()};
 
-    let iconDay1 = document.getElementById("iconDayOne");
-    let iconDay2 = document.getElementById("iconDayTwo");
-    let iconDay3 = document.getElementById("iconDayThree");
-    let iconDay4 = document.getElementById("iconDayFour");
-    let iconDay5 = document.getElementById("iconDayFive");
+    let descDay1DOM = document.getElementById("description1");
+    let descDay2DOM = document.getElementById("description2");
+    let descDay3DOM = document.getElementById("description3");
+    let descDay4DOM = document.getElementById("description4");
+    let descDay5DOM = document.getElementById("description5");
+
+    let iconDay1DOM = document.getElementById("imageOne");
+    let iconDay2DOM = document.getElementById("imageTwo");
+    let iconDay3DOM = document.getElementById("imageThree");
+    let iconDay4DOM = document.getElementById("imageFour");
+    let iconDay5DOM = document.getElementById("imageFive");
+
+    let city;
 
     async function getWeather() {
+        city = document.getElementById("cityInput").value;
 
         let tempDay1DOM = document.getElementById("tempDayOne");
         let tempDay2DOM = document.getElementById("tempDayTwo");
@@ -20,7 +25,7 @@
         let tempDay4DOM = document.getElementById("tempDayFour");
         let tempDay5DOM = document.getElementById("tempDayFive");
 
-        let city = document.getElementById("cityInput").value;
+
         const apiKey = "appid=239a3fc05faa415afe41364be9e3c3f7";
         let path = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&${apiKey}&units=metric`;
 
@@ -43,23 +48,18 @@
             if (dateArray[0] === dateArray[i]){//if the date in our new array is the same as first element in array => first day
                 lengthFirstDay.push(dateArray[i]);
             }
-            //console.log(dateArray[i]);
-            //console.log(lengthFirstDay.length);
         }
         let tempAllDays = [];
 
         for (let i = 0; i < data.list.length; i++) {
             tempAllDays.push(data.list[i].main.temp);
         }
-        //console.log(tempAllDays);
 
         let tempDay1 = tempAllDays.slice(0, lengthFirstDay.length);
         let tempDay2 = tempAllDays.slice(lengthFirstDay.length, lengthFirstDay.length + 8);
         let tempDay3 = tempAllDays.slice(lengthFirstDay.length + 8, lengthFirstDay.length + 16);
         let tempDay4 = tempAllDays.slice(lengthFirstDay.length + 16, lengthFirstDay.length + 24);
         let tempDay5 = tempAllDays.slice(lengthFirstDay.length + 24, tempAllDays.length);
-
-        //console.log(tempDay1, tempDay2, tempDay3, tempDay4, tempDay5)
 
         function average(array) {
             return Math.round(array.reduce((a, b) => a + b) / array.length);
@@ -70,8 +70,6 @@
         let avgTempDay3 = average(tempDay3);
         let avgTempDay4 = average(tempDay4);
         let avgTempDay5 = average(tempDay5);
-
-        //console.log(avgTempDay1, avgTempDay2, avgTempDay3, avgTempDay4, avgTempDay5);
 
         let toDay = new Date();
         let weekdays = new Array(7);
@@ -101,7 +99,18 @@
         let descDay4 = descAllDays.slice(lengthFirstDay.length + 16, lengthFirstDay.length + 24);
         let descDay5 = descAllDays.slice(lengthFirstDay.length + 24, tempAllDays.length);
 
-        console.log(getMostFrequent(descDay1));
+        let desc1 = getMostFrequent(descDay1);
+        let desc2 = getMostFrequent(descDay2);
+        let desc3 = getMostFrequent(descDay3);
+        let desc4 = getMostFrequent(descDay4);
+        let desc5 = getMostFrequent(descDay5);
+
+        //Putting desc in HTML
+        descDay1DOM.innerHTML = `<strong> ${desc1.toString()}</strong>`;
+        descDay2DOM.innerHTML = `<strong> ${desc2.toString()}</strong>`;
+        descDay3DOM.innerHTML = `<strong> ${desc3.toString()}</strong>`;
+        descDay4DOM.innerHTML = `<strong> ${desc4.toString()}</strong>`;
+        descDay5DOM.innerHTML = `<strong> ${desc5.toString()}</strong>`;
 
         let iconAllDays = [];
 
@@ -115,13 +124,29 @@
         let iconDay4 = iconAllDays.slice(lengthFirstDay.length + 16, lengthFirstDay.length + 24);
         let iconDay5 = iconAllDays.slice(lengthFirstDay.length + 24, tempAllDays.length);
 
-        console.log(iconDay4);
+        let icon1 = getMostFrequent(iconDay1);
+        let icon2 = getMostFrequent(iconDay2);
+        let icon3 = getMostFrequent(iconDay3);
+        let icon4 = getMostFrequent(iconDay4);
+        let icon5 = getMostFrequent(iconDay5);
 
+        iconDay1DOM.setAttribute("src", `http://openweathermap.org/img/wn/${icon1}.png`);
+        iconDay2DOM.setAttribute("src", `http://openweathermap.org/img/wn/${icon2}.png`);
+        iconDay3DOM.setAttribute("src", `http://openweathermap.org/img/wn/${icon3}.png`);
+        iconDay4DOM.setAttribute("src", `http://openweathermap.org/img/wn/${icon4}.png`);
+        iconDay5DOM.setAttribute("src", `http://openweathermap.org/img/wn/${icon5}.png`);
+
+        getPhoto();
     }
-    //data.list[i].weather.description
-    //data.list[i].weather[0].icon
 
-    document.getElementById("run").onclick = function() {getWeather()};
+
+
+   async function getPhoto() {
+        let response = await fetch('https://api.unsplash.com/search/photos?query=$'+city+'&client_id=8b3303518e733b03bb9fbe890041915da381de31ef0602ad71dc8adfd4b79f83');
+        let data = await response.json();
+        let countryImage = data.results[4].urls.regular;
+        document.body.style.backgroundImage = `url(${countryImage})`;
+    }
 })();
 
 
