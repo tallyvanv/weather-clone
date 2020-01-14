@@ -59,7 +59,7 @@
         let tempDay4 = tempAllDays.slice(lengthFirstDay.length + 16, lengthFirstDay.length + 24);
         let tempDay5 = tempAllDays.slice(lengthFirstDay.length + 24, tempAllDays.length);
 
-        console.log(tempDay1, tempDay2, tempDay3, tempDay4, tempDay5)
+        //console.log(tempDay1, tempDay2, tempDay3, tempDay4, tempDay5)
 
         function average(array) {
             return Math.round(array.reduce((a, b) => a + b) / array.length);
@@ -90,12 +90,58 @@
         tempDay5DOM.innerHTML = `${weekdays[toDay.getDay()+4]} </br> ${avgTempDay5.toString()}°C`;
 
         let descAllDays = [];
+
+        for (let i = 0; i < data.list.length; i++) {
+            descAllDays.push(data.list[i].weather[0].description);
+        }
+
+        let descDay1 = descAllDays.slice(0, lengthFirstDay.length);
+        let descDay2 = descAllDays.slice(lengthFirstDay.length, lengthFirstDay.length + 8);
+        let descDay3 = descAllDays.slice(lengthFirstDay.length + 8, lengthFirstDay.length + 16);
+        let descDay4 = descAllDays.slice(lengthFirstDay.length + 16, lengthFirstDay.length + 24);
+        let descDay5 = descAllDays.slice(lengthFirstDay.length + 24, tempAllDays.length);
+
+        console.log(getMostFrequent(descDay1));
+
         let iconAllDays = [];
 
+        for (let i = 0; i < data.list.length; i++) {
+            iconAllDays.push(data.list[i].weather[0].icon);
+        }
+
+        let iconDay1 = iconAllDays.slice(0, lengthFirstDay.length);
+        let iconDay2 = iconAllDays.slice(lengthFirstDay.length, lengthFirstDay.length + 8);
+        let iconDay3 = iconAllDays.slice(lengthFirstDay.length + 8, lengthFirstDay.length + 16);
+        let iconDay4 = iconAllDays.slice(lengthFirstDay.length + 16, lengthFirstDay.length + 24);
+        let iconDay5 = iconAllDays.slice(lengthFirstDay.length + 24, tempAllDays.length);
+
+        console.log(iconDay4);
 
     }
     //data.list[i].weather.description
-    //data.list[i].weather.0.icon
+    //data.list[i].weather[0].icon
 
     document.getElementById("run").onclick = function() {getWeather()};
 })();
+
+
+function getMostFrequent(arr1) {
+    let mf = 1;
+    let m = 0;
+    let item;
+    for (let i=0; i<arr1.length; i++)
+    {
+        for (let j=i; j<arr1.length; j++)
+        {
+            if (arr1[i] === arr1[j])
+                m++;
+            if (mf<m)
+            {
+                mf=m;
+                item = arr1[i];
+            }
+        }
+        m=0;
+    }
+    return item;
+}
