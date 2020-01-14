@@ -1,7 +1,5 @@
 (() => {
 
-    document.getElementById("run").onclick = function() {getWeather()};
-
     let descDay1DOM = document.getElementById("description1");
     let descDay2DOM = document.getElementById("description2");
     let descDay3DOM = document.getElementById("description3");
@@ -137,6 +135,7 @@
         iconDay5DOM.setAttribute("src", `http://openweathermap.org/img/wn/${icon5}.png`);
 
         getPhoto();
+        setVisibilityforWeather();
     }
 
 
@@ -147,8 +146,14 @@
         let countryImage = data.results[4].urls.regular;
         document.body.style.backgroundImage = `url(${countryImage})`;
     }
+
+    document.getElementById("run").onclick = function() {getWeather()};
 })();
 
+function setVisibilityforWeather() { // to make it visible after entering city
+    let weatherContainer = document.getElementById('weatherContainer');
+    weatherContainer.style.visibility = 'visible';
+}
 
 function getMostFrequent(arr1) {
     let mf = 1;
@@ -160,7 +165,7 @@ function getMostFrequent(arr1) {
         {
             if (arr1[i] === arr1[j])
                 m++;
-            if (mf<m)
+            if (mf <= m)
             {
                 mf=m;
                 item = arr1[i];
