@@ -94,7 +94,8 @@
 
 
     }
-    //weather.description
+    //data.list[i].weather.description
+    //data.list[i].weather.0.icon
 
     document.getElementById("run").onclick = function() {getWeather()};
 })();
