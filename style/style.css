@@ -13,30 +13,3 @@ body {
     background: linear-gradient(to bottom right, #FFF28C, #EB6349);
     color: #2B2016;
 }
-
-.title {
-    height: 30vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-.location {
-    height: 30vh;
-    width: 50%;
-    display: flex;
-    justify-content: space-around;
-
-}
-.degree-section
-{
-    display: flex;
-    align-items: center;
-}
-.degree-section span{
-    margin: 10px;
-    font-size: 30px;
-    cursor: pointer;
-}
-.degree-section h2{
-    font-size: 40px;
-}
