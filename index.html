@@ -7,83 +7,86 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <meta name=”viewport” content=”width=device-width, initial-scale=1.0">
 </head>
 <body>
 
 <div class="d-flex justify-content-center m-5">
     <input type="text" name="city" id="cityInput"/>
-    <button id="run" class="ml-2">get weather</button>
+    <button id="run" class="btn btn-secondary ml-2">get weather</button>
 </div>
 
-<div id="title">
-    <h1 id="cityName" class="d-flex justify-content-center">City</h1>
-</div>
-
-<div class="d-flex justify-content-center">
-    <div class="card p-2 m-2" style="width: 25rem;height: 13rem;" id="card1">
-
-        <div class="card-body">
-            <div>
-                <h5 class="card-title"></h5>
-                <p class="card-text" id="description1"></p>
-            </div>
-            <div class="d-flex justify-content-between">
-                <p class="card-text" id="tempDayOne"></p>
-                <img  class="card-img-top" alt="" id="imageOne">
-            </div>
-        </div>
+<div id="weatherContainer">
+    <div id="title">
+        <h1 id="cityName" class="d-flex justify-content-center">City</h1>
     </div>
-</div>
 
+    <div class="d-flex justify-content-center">
+        <div class="card p-2 m-2" style="width: 25rem;height: 13rem;" id="card1">
 
-<div class="row justify-content-center m-0">
-    <div class="card p-2 m-2" style="width: 18rem;height: 10rem;" id="card2">
-        <div class="card-body">
-            <div>
-                <h5 class="card-title"></h5>
-                <p class="card-text" id="description2"></p>
-            </div>
-            <div class="d-flex justify-content-between">
-                <p class="card-text" id="tempDayTwo"></p>
-                <img  class="card-img-top"  id="imageTwo">
-            </div>
-        </div>
-    </div>
-    <div class="card p-2 m-2" style="width: 18rem;height: 10rem;" id="card3">
-        <div class="card-body">
-            <div>
-                <h5 class="card-title"></h5>
-                <p class="card-text" id="description3"></p>
-            </div>
-            <div class="d-flex justify-content-between">
-                <p class="card-text" id="tempDayThree"></p>
-                <img class="card-img-top"  id="imageThree">
+            <div class="card-body">
+                <div>
+                    <h5 class="card-title"></h5>
+                    <p class="card-text" id="description1"></p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p class="card-text" id="tempDayOne"></p>
+                    <img class="card-img-top w-25" alt="" id="imageOne">
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="card p-2 m-2" style="width: 18rem;height: 10rem;" id="card4">
-        <div class="card-body">
-            <div>
-                <h5 class="card-title"></h5>
-                <p class="card-text" id="description4"></p>
-            </div>
-            <div class="d-flex justify-content-between">
-                <p class="card-text" id="tempDayFour"></p>
-                <img  class="card-img-top"  id="imageFour">
+
+    <div class="row justify-content-center m-0">
+        <div class="card p-2 m-2" style="width: 18rem;height: 10rem;" id="card2">
+            <div class="card-body">
+                <div>
+                    <h5 class="card-title"></h5>
+                    <p class="card-text" id="description2"></p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p class="card-text" id="tempDayTwo"></p>
+                    <img class="card-img-top w-25" id="imageTwo">
+                </div>
             </div>
         </div>
-    </div>
-    <div class="card p-2 m-2" style="width: 18rem;height: 10rem;" id="card5">
-
-        <div class="card-body">
-            <div>
-                <h5 class="card-title"></h5>
-                <p class="card-text" id="description5"></p>
+        <div class="card p-2 m-2" style="width: 18rem;height: 10rem;" id="card3">
+            <div class="card-body">
+                <div>
+                    <h5 class="card-title"></h5>
+                    <p class="card-text" id="description3"></p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p class="card-text" id="tempDayThree"></p>
+                    <img class="card-img-top w-25" id="imageThree">
+                </div>
             </div>
-            <div class="d-flex justify-content-between">
-                <p class="card-text" id="tempDayFive"></p>
-                <img  class="card-img-top"  id="imageFive">
+        </div>
+
+        <div class="card p-2 m-2" style="width: 18rem;height: 10rem;" id="card4">
+            <div class="card-body">
+                <div>
+                    <h5 class="card-title"></h5>
+                    <p class="card-text" id="description4"></p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p class="card-text" id="tempDayFour"></p>
+                    <img class="card-img-top w-25" id="imageFour">
+                </div>
+            </div>
+        </div>
+        <div class="card p-2 m-2" style="width: 18rem;height: 10rem;" id="card5">
+
+            <div class="card-body">
+                <div>
+                    <h5 class="card-title"></h5>
+                    <p class="card-text" id="description5"></p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <p class="card-text" id="tempDayFive"></p>
+                    <img class="card-img-top w-25" id="imageFive">
+                </div>
             </div>
         </div>
     </div>
